@@ -6,6 +6,7 @@ import { ProtectedRoute } from './components/ProtectedRoute'
 import { LoginPage } from './pages/LoginPage'
 import { UsersPage } from './pages/UsersPage'
 import { OperatorsPage } from './pages/OperatorsPage'
+import { LocationsPage } from './pages/LocationsPage'
 import './styles/Loading.css'
 import './styles/Layout.css'
 
@@ -75,12 +76,12 @@ function Dashboard() {
         <div className="dashboard-card status-card">
           <div className="card-icon">📊</div>
           <h3>Estado del Proyecto</h3>
-          <p className="status-badge-complete">Fase 3 - Completa</p>
+          <p className="status-badge-complete">Fase 4 - Completa</p>
           <ul>
             <li>✅ Autenticación JWT</li>
             <li>✅ Gestión de Usuarios</li>
             <li>✅ Operadores</li>
-            <li>⏳ Puntos de Operación</li>
+            <li>✅ Puntos de Operación</li>
             <li>⏳ Máquinas</li>
           </ul>
         </div>
@@ -117,6 +118,7 @@ function AppContent() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/users" element={<UsersPage />} />
         <Route path="/operators" element={<OperatorsPage />} />
+        <Route path="/locations" element={<LocationsPage />} />
       </Routes>
     </Layout>
   );
