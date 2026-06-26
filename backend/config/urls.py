@@ -6,11 +6,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-    TokenVerifyView,
-)
+from rest_framework_simplejwt.views import TokenVerifyView
+from apps.users.views import LoginView, RefreshView
 
 urlpatterns = [
     # Admin
@@ -21,14 +18,14 @@ urlpatterns = [
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 
     # Authentication endpoints
-    path('api/auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/auth/login/', LoginView.as_view(), name='login'),
+    path('api/auth/refresh/', RefreshView.as_view(), name='refresh'),
     path('api/auth/verify/', TokenVerifyView.as_view(), name='token_verify'),
 
     # Health check
     path('api/health/', lambda request: {'status': 'ok', 'message': 'Athena ERP API is running'}, name='health'),
 
-    # App endpoints (placeholders for now)
+    # App endpoints
     path('api/users/', include('apps.users.urls', namespace='users')),
     path('api/operators/', include('apps.operators.urls', namespace='operators')),
     path('api/locations/', include('apps.locations.urls', namespace='locations')),
