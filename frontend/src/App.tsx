@@ -7,6 +7,7 @@ import { LoginPage } from './pages/LoginPage'
 import { UsersPage } from './pages/UsersPage'
 import { OperatorsPage } from './pages/OperatorsPage'
 import { LocationsPage } from './pages/LocationsPage'
+import { MachinesPage } from './pages/MachinesPage'
 import './styles/Loading.css'
 import './styles/Layout.css'
 
@@ -119,6 +120,7 @@ function AppContent() {
         <Route path="/users" element={<UsersPage />} />
         <Route path="/operators" element={<OperatorsPage />} />
         <Route path="/locations" element={<LocationsPage />} />
+        <Route path="/machines" element={<MachinesPage />} />
       </Routes>
     </Layout>
   );
