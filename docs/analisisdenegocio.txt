@@ -1,0 +1,503 @@
+Esta primera versión tiene como objetivo comprender completamente el funcionamiento del negocio antes de escribir cualquier línea de código.
+
+Durante esta etapa no se desarrollará ninguna funcionalidad del sistema. En cambio, se documentará el dominio del problema, los procesos operativos, los actores involucrados, las reglas de negocio y la arquitectura conceptual del software.
+
+El objetivo principal es garantizar que todas las decisiones técnicas posteriores se basen en un entendimiento profundo del proceso empresarial y no únicamente en aspectos tecnológicos.
+
+Objetivos
+
+Al finalizar la versión 0.1 deberíamos ser capaces de responder preguntas como:
+
+¿Qué problema resuelve el sistema?
+¿Quiénes utilizan el sistema?
+¿Qué hace cada usuario?
+¿Qué información maneja?
+¿Qué reglas de negocio existen?
+¿Qué sucede cuando ocurre un caso excepcional?
+¿Cómo fluye la información desde que llega una fotografía hasta que se genera una liquidación?
+¿Qué entidades existirán dentro de la base de datos?
+¿Qué módulos tendrá la aplicación?
+¿Cómo será la arquitectura general?
+
+Si alguna de estas preguntas aún no tiene respuesta, significa que todavía no estamos listos para programar.
+
+Estructura de la documentación
+
+Durante esta versión se crearán los siguientes documentos.
+
+docs/
+
+01_vision.md
+
+02_problema_actual.md
+
+03_actores.md
+
+04_flujo_del_negocio.md
+
+05_reglas_de_negocio.md
+
+06_casos_de_uso.md
+
+07_modelo_conceptual.md
+
+08_modulos.md
+
+09_arquitectura.md
+
+10_roadmap.md
+Documento 1
+Visión del proyecto
+
+Debe responder preguntas como:
+
+¿Por qué existe el sistema?
+
+¿Qué problema resuelve?
+
+¿Qué beneficios tendrá?
+
+¿Qué limitaciones del proceso actual elimina?
+
+También se describirá el alcance del proyecto.
+
+No se hablará de tecnologías.
+
+Solo del negocio.
+
+Documento 2
+Problema actual
+
+Aquí documentaremos absolutamente todo lo que sucede hoy.
+
+Ejemplo.
+
+La información llega por WhatsApp.
+
+↓
+
+El analista interpreta manualmente cada fotografía.
+
+↓
+
+Transcribe los contadores.
+
+↓
+
+Realiza conciliaciones.
+
+↓
+
+Genera informes.
+
+↓
+
+Entrega información al gerente.
+
+↓
+
+Entrega liquidaciones a los clientes.
+
+↓
+
+Entrega históricos al contador.
+
+También se documentarán los problemas.
+
+Información duplicada.
+Cuatro archivos de Excel.
+Histórico fragmentado.
+Dependencia del analista.
+Falta de trazabilidad.
+Cambios manuales.
+Riesgo de pérdida de fotografías.
+Demoras en consultas históricas.
+Documento 3
+Actores
+
+Aquí describiremos cada usuario.
+
+Presidente
+
+Responsabilidades
+
+Información que consulta
+
+Permisos
+
+Gerente
+
+Responsabilidades
+
+Reportes
+
+KPIs
+
+Aprobaciones
+
+Analista
+
+Este probablemente ocupará varias páginas.
+
+Captura diaria.
+
+Interpretación de fotografías.
+
+Conciliaciones.
+
+Validaciones.
+
+Generación de informes.
+
+Cierre de mes.
+
+Delegado
+
+Conciliaciones.
+
+Aprobaciones.
+
+Diferencias.
+
+Técnico
+
+Registro de indisponibilidad de máquinas.
+
+No participa en liquidaciones.
+
+Contador
+
+Obtiene información tributaria.
+
+Genera facturación.
+
+Consulta históricos.
+
+Documento 4
+Flujo completo del negocio
+
+Este será probablemente el documento más importante.
+
+Ejemplo.
+
+Fotografía enviada
+
+↓
+
+Analista interpreta
+
+↓
+
+Registro de contadores
+
+↓
+
+Validación automática
+
+↓
+
+Actualización del movimiento
+
+↓
+
+Liquidación
+
+↓
+
+Conciliación
+
+↓
+
+Aprobación
+
+↓
+
+Cierre mensual
+
+↓
+
+Facturación
+
+↓
+
+Histórico
+
+Luego documentaremos todos los caminos alternativos.
+
+Por ejemplo.
+
+¿Qué pasa si no llega una fotografía?
+
+¿Qué pasa si la máquina fue reiniciada?
+
+¿Qué pasa si existe una diferencia?
+
+¿Qué pasa si la máquina estuvo apagada?
+
+¿Qué pasa si el delegado solicita modificar la liquidación?
+
+Documento 5
+Reglas del negocio
+
+Este documento será gigantesco.
+
+Y probablemente el más importante del proyecto.
+
+Cada regla tendrá el siguiente formato.
+
+RN-001
+
+Nombre
+
+Descripción
+
+Actores involucrados
+
+Entradas
+
+Proceso
+
+Resultado
+
+Observaciones
+
+Ejemplo.
+
+RN-001
+
+Los contadores nunca se reinician al finalizar un mes.
+
+RN-002
+
+La ganancia del período corresponde únicamente a la diferencia entre los contadores del período anterior y el actual.
+
+RN-003
+
+Cuando existe un reinicio de contadores se debe registrar un movimiento especial.
+
+RN-004
+
+Los días fuera de operación afectan el cálculo del fee.
+
+RN-005
+
+Los ajustes aprobados por el delegado nunca eliminan el dato original.
+
+RN-006
+
+Toda liquidación cerrada queda bloqueada para edición.
+
+Y así sucesivamente.
+
+No me sorprendería terminar con más de 100 reglas.
+
+Documento 6
+Casos de uso
+
+Ejemplo.
+
+Analista
+
+Registrar contadores.
+
+Modificar movimiento.
+
+Crear ajuste.
+
+Cerrar liquidación.
+
+Consultar históricos.
+
+Gerente
+
+Consultar rentabilidad.
+
+Aprobar cierre.
+
+Consultar diferencias.
+
+Delegado
+
+Aceptar liquidación.
+
+Solicitar modificación.
+
+Consultar históricos.
+
+Contador
+
+Generar información tributaria.
+
+Exportar Excel.
+
+Generar PDF.
+
+Documento 7
+Modelo conceptual
+
+Aquí todavía no hacemos tablas.
+
+Solo entidades.
+
+Ejemplo.
+
+Cliente.
+
+Punto.
+
+Máquina.
+
+Movimiento.
+
+Liquidación.
+
+Usuario.
+
+Rol.
+
+Evidencia.
+
+Conciliación.
+
+Estado de operación.
+
+Impuesto.
+
+Configuración.
+
+Documento 8
+Módulos
+
+Dashboard Ejecutivo.
+
+Dashboard Gerencial.
+
+Captura diaria.
+
+Liquidaciones.
+
+Conciliaciones.
+
+Administración.
+
+Configuración.
+
+Históricos.
+
+Reportes.
+
+Auditoría.
+
+Usuarios.
+
+Documento 9
+Arquitectura
+
+Aquí empezamos a hablar de tecnología.
+
+React
+
+↓
+
+Django REST
+
+↓
+
+PostgreSQL
+
+↓
+
+Archivos
+
+↓
+
+Backups
+
+Nada de código.
+
+Solo arquitectura.
+
+Documento 10
+Roadmap
+
+Versiones.
+
+v0.1
+
+Documentación
+
+------------
+
+v0.2
+
+Modelo ER
+
+------------
+
+v0.3
+
+Base de datos
+
+------------
+
+v0.4
+
+Backend
+
+------------
+
+v0.5
+
+Autenticación
+
+------------
+
+v0.6
+
+Clientes
+
+------------
+
+v0.7
+
+Puntos
+
+------------
+
+v0.8
+
+Máquinas
+
+------------
+
+v0.9
+
+Captura
+
+------------
+
+v1.0
+
+Sistema funcional
+🎯 Objetivos de calidad
+
+Desde la primera versión el proyecto deberá seguir principios de desarrollo profesional:
+
+Arquitectura por capas.
+Código limpio (Clean Code).
+Principios SOLID.
+Diseño orientado al dominio (DDD ligero).
+Control de versiones con Git.
+Documentación técnica.
+Auditoría de cambios.
+Escalabilidad.
+Parametrización de reglas de negocio.
+Seguridad basada en roles.
+Modularidad.
+¿Qué esperamos lograr con la v0.1?
+
+Al finalizar esta fase no existirá una aplicación funcional, pero sí existirá algo mucho más importante: un conocimiento estructurado del negocio.
+
+Esta documentación será la base sobre la cual se diseñará la base de datos, la API, el frontend y cada una de las funcionalidades futuras. Cualquier cambio importante en el sistema deberá comenzar actualizando estos documentos antes de modificar el código.
+
+El objetivo no es simplemente desarrollar una aplicación web, sino construir una plataforma empresarial capaz de digitalizar y optimizar un proceso operativo real, manteniendo la trazabilidad, la integridad de la información y la flexibilidad necesaria para adaptarse a cambios futuros en las reglas del negocio.
