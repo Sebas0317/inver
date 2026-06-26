@@ -77,13 +77,13 @@ function Dashboard() {
         <div className="dashboard-card status-card">
           <div className="card-icon">📊</div>
           <h3>Estado del Proyecto</h3>
-          <p className="status-badge-complete">Fase 4 - Completa</p>
+          <p className="status-badge-complete">Fase 5 - Completa</p>
           <ul>
             <li>✅ Autenticación JWT</li>
             <li>✅ Gestión de Usuarios</li>
             <li>✅ Operadores</li>
             <li>✅ Puntos de Operación</li>
-            <li>⏳ Máquinas</li>
+            <li>✅ Máquinas</li>
           </ul>
         </div>
 
