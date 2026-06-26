@@ -10,6 +10,15 @@ from apps.users.serializers import (
 )
 
 
+# Roles que pueden gestionar usuarios
+USER_MANAGEMENT_ROLES = ['PRESIDENTE', 'ADMINISTRADOR']
+
+
+def has_user_management_permission(user):
+    """Verifica si un usuario puede gestionar otros usuarios."""
+    return user.role in USER_MANAGEMENT_ROLES
+
+
 class LoginView(TokenObtainPairView):
     """
     Vista para obtener tokens JWT (access y refresh).
@@ -27,14 +36,14 @@ class RefreshView(TokenRefreshView):
 
 class UserViewSet(viewsets.ModelViewSet):
     """
-   ViewSet para el CRUD de usuarios.
+    ViewSet para el CRUD de usuarios.
 
     list: Lista todos los usuarios activos
-    create: Crea un nuevo usuario
+    create: Crea un nuevo usuario (solo PRESIDENTE y ADMINISTRADOR)
     retrieve: Obtiene detalles de un usuario
-    update: Actualiza un usuario completo
-    partial_update: Actualiza parcialmente un usuario
-    destroy: Elimina un usuario
+    update: Actualiza un usuario completo (solo PRESIDENTE y ADMINISTRADOR)
+    partial_update: Actualiza parcialmente un usuario (solo PRESIDENTE y ADMINISTRADOR)
+    destroy: Elimina lógicamente un usuario (solo PRESIDENTE y ADMINISTRADOR)
     """
     queryset = User.objects.filter(is_active=True)
     serializer_class = UserSerializer
@@ -43,15 +52,18 @@ class UserViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """
         Filtra usuarios activos.
-        El PRESIDENTE puede ver todos, los demás solo ven usuarios activos.
+        Todos los usuarios autenticados pueden ver la lista de usuarios activos.
         """
-        queryset = User.objects.filter(is_active=True)
+        return User.objects.filter(is_active=True)
 
-        # Si no es PRESIDENTE o ADMINISTRADOR, solo ve usuarios activos
-        if not self.request.user.role in ['PRESIDENTE', 'ADMINISTRADOR']:
-            return queryset.filter(is_active=True)
-
-        return queryset
+    def get_permissions(self):
+        """
+        Define permisos específicos por acción.
+        """
+        if self.action in ['create', 'update', 'partial_update', 'destroy']:
+            # Solo PRESIDENTE y ADMINISTRADOR pueden gestionar usuarios
+            return [permissions.IsAuthenticated(), IsUserManager()]
+        return [permissions.IsAuthenticated()]
 
     def create(self, request, *args, **kwargs):
         """
@@ -95,6 +107,19 @@ class UserViewSet(viewsets.ModelViewSet):
         instance.is_active = False
         instance.save(update_fields=['is_active'])
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class IsUserManager(permissions.BasePermission):
+    """
+    Permiso personalizado para verificar si un usuario puede gestionar otros usuarios.
+    Solo PRESIDENTE y ADMINISTRADOR pueden crear, editar o desactivar usuarios.
+    """
+
+    def has_permission(self, request, view):
+        return has_user_management_permission(request.user)
+
+    def has_object_permission(self, request, view, obj):
+        return has_user_management_permission(request.user)
 
 
 class UserMeView(viewsets.GenericViewSet):
