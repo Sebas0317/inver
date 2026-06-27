@@ -1,10 +1,17 @@
 """
 URLs for technical app.
+FR-600 a FR-604: Días de Operación Técnico
 """
-from django.urls import path
+from rest_framework.routers import DefaultRouter
+from .views import (
+    OperationDayViewSet,
+    MaintenanceEventViewSet,
+    MachineDamageReportViewSet,
+)
 
-app_name = 'technical'
+router = DefaultRouter()
+router.register(r'operation-days', OperationDayViewSet, basename='operation-day')
+router.register(r'maintenance', MaintenanceEventViewSet, basename='maintenance')
+router.register(r'damage-reports', MachineDamageReportViewSet, basename='damage-report')
 
-urlpatterns = [
-    # Placeholder - endpoints will be added in next phase
-]
+urlpatterns = router.urls
