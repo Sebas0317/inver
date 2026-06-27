@@ -10,6 +10,7 @@ import { LocationsPage } from './pages/LocationsPage'
 import { MachinesPage } from './pages/MachinesPage'
 import { CapturesPage } from './pages/CapturesPage'
 import { TechnicalPage } from './pages/TechnicalPage'
+import { ReconciliationPage } from './pages/ReconciliationPage'
 import './styles/Loading.css'
 import './styles/Layout.css'
 
@@ -26,6 +27,7 @@ function Layout({ children }: { children: React.ReactNode }) {
     { path: '/machines', label: 'Máquinas', icon: '🎰' },
     { path: '/captures', label: 'Capturas', icon: '📸' },
     { path: '/technical', label: 'Técnico', icon: '🔧' },
+    { path: '/reconciliation', label: 'Conciliaciones', icon: '🤝' },
   ];
 
   return (
@@ -81,7 +83,7 @@ function Dashboard() {
         <div className="dashboard-card status-card">
           <div className="card-icon">📊</div>
           <h3>Estado del Proyecto</h3>
-          <p className="status-badge-complete">Fase 8 - Días de Operación</p>
+          <p className="status-badge-complete">Fase 9 - Conciliaciones</p>
           <ul>
             <li>✅ Autenticación JWT</li>
             <li>✅ Gestión de Usuarios</li>
@@ -90,6 +92,7 @@ function Dashboard() {
             <li>✅ Máquinas</li>
             <li>✅ Capturas Diarias</li>
             <li>✅ Días de Operación</li>
+            <li>✅ Conciliaciones</li>
           </ul>
         </div>
 
@@ -103,6 +106,7 @@ function Dashboard() {
             <li><strong>Máquinas:</strong> Catálogo de equipos y tipos</li>
             <li><strong>Capturas:</strong> Registro diario de operación de máquinas</li>
             <li><strong>Técnico:</strong> Días de operación, mantenimientos y daños</li>
+            <li><strong>Conciliaciones:</strong> Conciliación mensual de valores reportados vs reales</li>
           </ul>
         </div>
 
@@ -131,6 +135,7 @@ function AppContent() {
         <Route path="/machines" element={<MachinesPage />} />
         <Route path="/captures" element={<CapturesPage />} />
         <Route path="/technical" element={<TechnicalPage />} />
+        <Route path="/reconciliation" element={<ReconciliationPage />} />
       </Routes>
     </Layout>
   );
