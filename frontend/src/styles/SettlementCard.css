@@ -1,0 +1,245 @@
+/* Settlement Card Styles */
+.settlement-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-left: 4px solid #e5e7eb;
+}
+
+.settlement-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.settlement-card.status-draft {
+  border-left-color: #6b7280;
+}
+
+.settlement-card.status-generated {
+  border-left-color: #3b82f6;
+}
+
+.settlement-card.status-closed {
+  border-left-color: #10b981;
+}
+
+.settlement-card.status-reopened {
+  border-left-color: #f59e0b;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.header-left h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #1a1a2e;
+}
+
+.location-badge {
+  font-size: 0.85rem;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-badge.status-draft {
+  background: #e5e7eb;
+  color: #6b7280;
+}
+
+.status-badge.status-generated {
+  background: #dbeafe;
+  color: #3b82f6;
+}
+
+.status-badge.status-closed {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.status-badge.status-reopened {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.info-item .label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.info-item .value {
+  font-size: 1rem;
+  color: #1a1a2e;
+  font-weight: 500;
+}
+
+.info-item .value.highlight {
+  color: #667eea;
+  font-size: 1.25rem;
+}
+
+/* Tax Breakdown */
+.tax-breakdown {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tax-breakdown h4 {
+  margin: 0 0 1rem 0;
+  font-size: 0.95rem;
+  color: #1a1a2e;
+  font-weight: 600;
+}
+
+.tax-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.tax-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.tax-item span:first-child {
+  color: #6b7280;
+}
+
+.tax-item span:last-child {
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+/* Dates Section */
+.dates-section {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.date-badge {
+  font-size: 0.85rem;
+  color: #6b7280;
+  padding: 0.5rem 0.75rem;
+  background: #f9fafb;
+  border-radius: 6px;
+}
+
+/* Card Actions */
+.card-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-action {
+  padding: 0.5rem 1rem;
+  border: 2px solid #e5e7eb;
+  background: white;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-action:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.btn-action.btn-edit:hover {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.btn-action.btn-close:hover {
+  background: #d1fae5;
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.btn-action.btn-reopen:hover {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
+
+.btn-action.btn-export:hover {
+  background: #f3f4f6;
+  border-color: #6b7280;
+  color: #6b7280;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .tax-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-actions {
+    flex-direction: column;
+  }
+
+  .btn-action {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,10 +1,9 @@
-"""
-URLs for settlements app.
-"""
-from django.urls import path
+from rest_framework.routers import DefaultRouter
+from .views import SettlementViewSet, SettlementItemViewSet, SettlementHistoryViewSet
 
-app_name = 'settlements'
+router = DefaultRouter()
+router.register(r'', SettlementViewSet, basename='settlement')
+router.register(r'items', SettlementItemViewSet, basename='settlement-item')
+router.register(r'history', SettlementHistoryViewSet, basename='settlement-history')
 
-urlpatterns = [
-    # Placeholder - endpoints will be added in next phase
-]
+urlpatterns = router.urls
