@@ -1,10 +1,19 @@
 """
 URLs for captures app.
+FR-500 a FR-506: Capturas Diarias
 """
-from django.urls import path
+from rest_framework.routers import DefaultRouter
+from .views import (
+    CaptureViewSet,
+    CaptureAdjustmentViewSet,
+    PhotoViewSet,
+    MachineResetViewSet,
+)
 
-app_name = 'captures'
+router = DefaultRouter()
+router.register(r'', CaptureViewSet, basename='capture')
+router.register(r'adjustments', CaptureAdjustmentViewSet, basename='capture-adjustment')
+router.register(r'photos', PhotoViewSet, basename='photo')
+router.register(r'resets', MachineResetViewSet, basename='machine-reset')
 
-urlpatterns = [
-    # Placeholder - endpoints will be added in next phase
-]
+urlpatterns = router.urls

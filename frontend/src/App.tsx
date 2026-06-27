@@ -8,6 +8,7 @@ import { UsersPage } from './pages/UsersPage'
 import { OperatorsPage } from './pages/OperatorsPage'
 import { LocationsPage } from './pages/LocationsPage'
 import { MachinesPage } from './pages/MachinesPage'
+import { CapturesPage } from './pages/CapturesPage'
 import './styles/Loading.css'
 import './styles/Layout.css'
 
@@ -22,6 +23,7 @@ function Layout({ children }: { children: React.ReactNode }) {
     { path: '/operators', label: 'Operadores', icon: '🏢' },
     { path: '/locations', label: 'Puntos', icon: '📍' },
     { path: '/machines', label: 'Máquinas', icon: '🎰' },
+    { path: '/captures', label: 'Capturas', icon: '📸' },
   ];
 
   return (
@@ -77,13 +79,14 @@ function Dashboard() {
         <div className="dashboard-card status-card">
           <div className="card-icon">📊</div>
           <h3>Estado del Proyecto</h3>
-          <p className="status-badge-complete">Fase 5 - Completa</p>
+          <p className="status-badge-complete">Fase 7 - Capturas Diarias</p>
           <ul>
             <li>✅ Autenticación JWT</li>
             <li>✅ Gestión de Usuarios</li>
             <li>✅ Operadores</li>
             <li>✅ Puntos de Operación</li>
             <li>✅ Máquinas</li>
+            <li>✅ Capturas Diarias</li>
           </ul>
         </div>
 
@@ -95,6 +98,7 @@ function Dashboard() {
             <li><strong>Operadores:</strong> Gestión de clientes y porcentajes</li>
             <li><strong>Puntos:</strong> Ubicación de máquinas por operador</li>
             <li><strong>Máquinas:</strong> Catálogo de equipos y tipos</li>
+            <li><strong>Capturas:</strong> Registro diario de operación de máquinas</li>
           </ul>
         </div>
 
@@ -121,6 +125,7 @@ function AppContent() {
         <Route path="/operators" element={<OperatorsPage />} />
         <Route path="/locations" element={<LocationsPage />} />
         <Route path="/machines" element={<MachinesPage />} />
+        <Route path="/captures" element={<CapturesPage />} />
       </Routes>
     </Layout>
   );
